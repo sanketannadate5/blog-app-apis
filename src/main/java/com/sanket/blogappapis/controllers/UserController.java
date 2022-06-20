@@ -1,7 +1,8 @@
 package com.sanket.blogappapis.controllers;
 
 import java.util.List;
-import java.util.Map;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sanket.blogappapis.payloads.ApiResponse;
 import com.sanket.blogappapis.payloads.UserDto;
 import com.sanket.blogappapis.services.UserService;
 
@@ -27,29 +29,31 @@ public class UserController {
 
 	// POST - create User
 	@PostMapping("/")
-	public ResponseEntity<UserDto> createuser(@RequestBody UserDto userDto) {
-		UserDto createUserDto = userService.createUser(userDto);
-		return new ResponseEntity<UserDto>(createUserDto, HttpStatus.CREATED);
+	public ResponseEntity<UserDto> createuser(@Valid @RequestBody UserDto userDto) {
+		return new ResponseEntity<UserDto>(userService.createUser(userDto), HttpStatus.CREATED);
 	}
 
 	// PUT - update User
 	@PutMapping("/{userId}")
-	public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto, @PathVariable("userId") Long userId) {
-		UserDto updatedUserDto = userService.updateUser(userDto, userId);
-		return ResponseEntity.ok(updatedUserDto);
+	public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto, @PathVariable("userId") Long userId) {
+		return ResponseEntity.ok(userService.updateUser(userDto, userId));
 	}
 
 	// DELETE - delete User
 	@DeleteMapping("/{userId}")
-	public ResponseEntity<Map<String, String>> deleteUser(@PathVariable("userId") Long userId){
+	public ResponseEntity<ApiResponse> deleteUser(@PathVariable("userId") Long userId){
 		userService.DeleteUser(userId);
-		return ResponseEntity.ok(Map.of("Message ","The Use is deleted "+userId));
+		return new ResponseEntity<ApiResponse>(new ApiResponse("User has been deleted",true),HttpStatus.OK);
 	}
 
 	// GET - get User
-	@GetMapping("/getAll")
-	public ResponseEntity<List<UserDto>> getUsers(){
-		List<UserDto> userDtos=userService.getAllUsers();
-		return new ResponseEntity<List<UserDto>>(userDtos,HttpStatus.OK);
+	@GetMapping("/")
+	public ResponseEntity<List<UserDto>> getAllUsers(){
+		return ResponseEntity.ok(userService.getAllUsers());
+	}
+	
+	@GetMapping("/{userId}")
+	public ResponseEntity<UserDto> getSingleUser(@PathVariable("userId") Long userId){
+		return new ResponseEntity<UserDto>(userService.getUserById(userId),HttpStatus.ACCEPTED);
 	}
 }
