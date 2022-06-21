@@ -1,6 +1,6 @@
 package com.sanket.blogappapis.payloads;
 
-public class Category {
+public class CategoryDto {
 	private Long categoryId;
 	private String categoryTitle;
 	private String categoryDescription;

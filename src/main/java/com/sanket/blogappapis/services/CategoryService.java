@@ -2,17 +2,17 @@ package com.sanket.blogappapis.services;
 
 import java.util.List;
 
-import com.sanket.blogappapis.entity.Category;
+import com.sanket.blogappapis.payloads.CategoryDto;
 
 public interface CategoryService {
-	
-	Category createCategory();
-	
-	Category updateCategory(Long id);
-	
+
+	CategoryDto createCategory(CategoryDto categoryDto);
+
+	CategoryDto updateCategory(CategoryDto categoryDto, Long categoryId);
+
 	void deleteCategory(Long id);
-	
-	Category getOneCategory(Long id);
-	
-	List<Category> getAllCategory();
+
+	CategoryDto getOneCategory(Long id);
+
+	List<CategoryDto> getAllCategory();
 }
