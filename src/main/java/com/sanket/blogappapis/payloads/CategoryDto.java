@@ -1,26 +1,34 @@
 package com.sanket.blogappapis.payloads;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class CategoryDto {
-	private Long categoryId;
-	private String categoryTitle;
-	private String categoryDescription;
+	private Long id;
 	
-	public Long getCategoryId() {
-		return categoryId;
+	@NotBlank
+	@Size(min = 4)
+	private String title;
+	@NotBlank
+	@Size(min = 6)
+	private String description;
+	
+	public Long getId() {
+		return id;
 	}
-	public void setCategoryId(Long categoryId) {
-		this.categoryId = categoryId;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public String getCategoryTitle() {
-		return categoryTitle;
+	public String getTitle() {
+		return title;
 	}
-	public void setCategoryTitle(String categoryTitle) {
-		this.categoryTitle = categoryTitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	public String getCategoryDescription() {
-		return categoryDescription;
+	public String getDescription() {
+		return description;
 	}
-	public void setCategoryDescription(String categoryDescription) {
-		this.categoryDescription = categoryDescription;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }
