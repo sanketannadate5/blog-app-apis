@@ -56,7 +56,4 @@ public class CategoryController {
 		List<CategoryDto> categoryDto = categoryService.getAllCategory();
 		return new ResponseEntity<List<CategoryDto>>(categoryDto,HttpStatus.ACCEPTED);
 	}
-	
-	
-	
 }

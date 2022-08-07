@@ -2,6 +2,7 @@ package com.sanket.blogappapis.entity;
 
 import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "post")
@@ -23,30 +21,26 @@ public class Post {
 	@Column(name = "pt_id")
 	private Long postId;
 	
-	@Column(name = "pt_title", length = 20)
+	@Column(name = "pt_title", length = 20,nullable = false)
 	private String title;
 	
 	@Column(name = "pt_content", length = 100)	
 	private String content;
-	
+
 	@Column(name = "pt_imgName", length = 20)	
 	private String imageName;
 	
 	@Column(name = "pt_data")
 	private Timestamp addedDate;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private User user;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ctg_id")
 	private Category category;
 
-//	@JoinColumn(name = "ctg_id")
-//	@JsonManagedReference
-//	@JoinColumn(name = "user_id")
-//	@JsonBackReference
 	public Long getPostId() {
 		return postId;
 	}
@@ -61,6 +55,14 @@ public class Post {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public String getImageName() {
@@ -79,14 +81,6 @@ public class Post {
 		this.addedDate = addedDate;
 	}
 
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
 	public User getUser() {
 		return user;
 	}
@@ -94,4 +88,12 @@ public class Post {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}	
 }
