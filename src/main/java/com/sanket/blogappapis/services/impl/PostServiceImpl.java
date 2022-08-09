@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.sanket.blogappapis.entity.Category;
@@ -16,6 +17,7 @@ import com.sanket.blogappapis.entity.Post;
 import com.sanket.blogappapis.entity.User;
 import com.sanket.blogappapis.exceptions.ResourceNotFoundException;
 import com.sanket.blogappapis.payloads.PostDto;
+import com.sanket.blogappapis.payloads.PostResponse;
 import com.sanket.blogappapis.repositories.CategoryRepo;
 import com.sanket.blogappapis.repositories.PostRepo;
 import com.sanket.blogappapis.repositories.UserRepo;
@@ -68,16 +70,28 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<PostDto> getAllPost(Integer pageNumber, Integer pageSize) {
+	public PostResponse getAllPost(Integer pageNumber, Integer pageSize, String sortBy, String sortDirection) {
 		
-	    Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		Sort sort = sortDirection.equalsIgnoreCase("ASC") ? Sort.by(sortBy).ascending(): Sort.by(sortBy).descending();
+		
+		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
 	    
 		Page<Post> pagePosts = postRepo.findAll(pageable);
 		
 	    List<Post> posts = pagePosts.getContent();
 		List<PostDto> listOfPostDTO = posts.stream().map(post -> modelMapper.map(post, PostDto.class))
 				.collect(Collectors.toList());
-		return listOfPostDTO;
+		
+		PostResponse postResponse = new PostResponse();
+		
+		postResponse.setPostContent(listOfPostDTO);
+		postResponse.setPageNumber(pagePosts.getNumber());
+		postResponse.setPageSize(pagePosts.getSize());
+		postResponse.setTotalElements(pagePosts.getTotalElements());
+		postResponse.setTotalPages(pagePosts.getTotalPages());
+		postResponse.setIsLastPage(pagePosts.isLast());
+		
+		return postResponse;
 	}
 
 	@Override

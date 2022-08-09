@@ -3,6 +3,7 @@ package com.sanket.blogappapis.services;
 import java.util.List;
 
 import com.sanket.blogappapis.payloads.PostDto;
+import com.sanket.blogappapis.payloads.PostResponse;
 
 public interface PostService {
 
@@ -14,7 +15,7 @@ public interface PostService {
 
 	PostDto getSinglePost(Long id);
 
-	List<PostDto> getAllPost(Integer pageNumber, Integer pageSize);
+	PostResponse getAllPost(Integer pageNumber, Integer pageSize, String sortBy, String sortDirection);
 
 	List<PostDto> getPostsByCategory(Long id);
 

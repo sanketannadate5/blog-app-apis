@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.sanket</groupId>
 	<artifactId>blog-app-apis</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<name>blog-app-apis</name>
 	<description>This is an backend apis app for blogging</description>
 	<properties>
@@ -52,7 +52,18 @@
 			<artifactId>modelmapper</artifactId>
 			<version>3.1.0</version>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-swagger2</artifactId>
+		    <version>3.0.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
+		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-swagger-ui</artifactId>
+		    <version>3.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

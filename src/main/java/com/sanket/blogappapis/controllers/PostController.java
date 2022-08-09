@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sanket.blogappapis.payloads.ApiResponse;
 import com.sanket.blogappapis.payloads.PostDto;
+import com.sanket.blogappapis.payloads.PostResponse;
 import com.sanket.blogappapis.services.PostService;
 
 @RestController
@@ -54,11 +55,13 @@ public class PostController {
 	}
 
 	@GetMapping("/")
-	public ResponseEntity<List<PostDto>> getAllpost(
-			@RequestParam(defaultValue = "1", required = false) Integer pageNumber,
-			@RequestParam(defaultValue = "5", required = false) Integer pageSize) {
-		List<PostDto> postDtos = postService.getAllPost(pageNumber, pageSize);
-		return new ResponseEntity<List<PostDto>>(postDtos, HttpStatus.ACCEPTED);
+	public ResponseEntity<PostResponse> getAllpost(
+			@RequestParam(value = "pageNumber",  defaultValue = "1", required = false) Integer pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "5", required = false) Integer pageSize,
+			@RequestParam(value = "sortBy", defaultValue = "postId", required = false) String sortBy,
+			@RequestParam(value = "sortDirection", defaultValue = "ASC", required = false) String sortDirection) {
+		PostResponse postResponse = postService.getAllPost(pageNumber, pageSize,sortBy,sortDirection);
+		return new ResponseEntity<PostResponse>(postResponse, HttpStatus.ACCEPTED);
 	}
 	
 	@GetMapping("/{userId}/user")
