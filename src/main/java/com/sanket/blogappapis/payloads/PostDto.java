@@ -2,9 +2,6 @@ package com.sanket.blogappapis.payloads;
 
 import java.sql.Timestamp;
 
-import com.sanket.blogappapis.entity.Category;
-import com.sanket.blogappapis.entity.User;
-
 public class PostDto {
 	
 	
