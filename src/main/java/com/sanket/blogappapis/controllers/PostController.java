@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sanket.blogappapis.commonUtils.CommonConstansts;
 import com.sanket.blogappapis.payloads.ApiResponse;
 import com.sanket.blogappapis.payloads.PostDto;
 import com.sanket.blogappapis.payloads.PostResponse;
@@ -56,10 +57,10 @@ public class PostController {
 
 	@GetMapping("/")
 	public ResponseEntity<PostResponse> getAllpost(
-			@RequestParam(value = "pageNumber",  defaultValue = "1", required = false) Integer pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "5", required = false) Integer pageSize,
-			@RequestParam(value = "sortBy", defaultValue = "postId", required = false) String sortBy,
-			@RequestParam(value = "sortDirection", defaultValue = "ASC", required = false) String sortDirection) {
+			@RequestParam(value = "pageNumber",  defaultValue = CommonConstansts.PAGE_NUMBER, required = false) Integer pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = CommonConstansts.PAGE_SIZE, required = false) Integer pageSize,
+			@RequestParam(value = "sortBy", defaultValue = CommonConstansts.SORT_BY, required = false) String sortBy,
+			@RequestParam(value = "sortDirection", defaultValue = CommonConstansts.SORT_DIRECTION, required = false) String sortDirection) {
 		PostResponse postResponse = postService.getAllPost(pageNumber, pageSize,sortBy,sortDirection);
 		return new ResponseEntity<PostResponse>(postResponse, HttpStatus.ACCEPTED);
 	}
