@@ -9,11 +9,11 @@
 	</parent>
 	<groupId>com.sanket</groupId>
 	<artifactId>blog-app-apis</artifactId>
-	<version>0.0.5</version>
+	<version>0.0.6</version>
 	<name>blog-app-apis</name>
 	<description>This is an backend apis app for blogging</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>18</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
