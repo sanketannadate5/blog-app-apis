@@ -27,7 +27,7 @@ public class Post {
 	@Column(name = "pt_content", length = 100)	
 	private String content;
 
-	@Column(name = "pt_imgName", length = 20)	
+	@Column(name = "pt_imgName", length = 100)	
 	private String imageName;
 	
 	@Column(name = "pt_data")

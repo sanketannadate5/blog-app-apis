@@ -1,16 +1,15 @@
 package com.sanket.blogappapis.payloads;
 
-public class FileResponse {
+public class ImageResponse {
 	
 	private String fileName;
 	private String message;
 	
-	public FileResponse() {
-		super();
+	public ImageResponse() {
 	}
 	
-	public FileResponse(String fileName, String message) {
-		super();
+	public ImageResponse(String fileName, String message) {
+		
 		this.fileName = fileName;
 		this.message = message;
 	}
