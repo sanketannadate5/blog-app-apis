@@ -21,15 +21,15 @@ public class GlobalExceptionHandler {
 		ApiResponse apiResponse = new ApiResponse(message, false);
 		return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.NOT_FOUND);
 	}
-	
+
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<Map<String, String>> methodArgumentNotValidException(MethodArgumentNotValidException ex){
+	public ResponseEntity<Map<String, String>> methodArgumentNotValidException(MethodArgumentNotValidException ex) {
 		Map<String, String> map = new HashMap<String, String>();
-		ex.getAllErrors().stream().forEach((error) ->{
-			String fieldName =((FieldError)error).getField();
+		ex.getAllErrors().stream().forEach((error) -> {
+			String fieldName = ((FieldError) error).getField();
 			String message = error.getDefaultMessage();
 			map.put(fieldName, message);
 		});
-		return new ResponseEntity<Map<String, String>>(map,HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<Map<String, String>>(map, HttpStatus.BAD_REQUEST);
 	}
 }

@@ -26,7 +26,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.sanket.blogappapis.commonUtils.CommonConstansts;
 import com.sanket.blogappapis.payloads.ApiResponse;
-import com.sanket.blogappapis.payloads.ImageResponse;
 import com.sanket.blogappapis.payloads.PostDto;
 import com.sanket.blogappapis.payloads.PostResponse;
 import com.sanket.blogappapis.services.FileService;
