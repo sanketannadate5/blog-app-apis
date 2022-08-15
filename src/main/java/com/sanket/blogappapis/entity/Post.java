@@ -1,6 +1,8 @@
 package com.sanket.blogappapis.entity;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,7 +23,7 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "pt_id")
 	private Long postId;
-	
+	 
 	@Column(name = "pt_title", length = 20,nullable = false)
 	private String title;
 	
@@ -40,6 +43,9 @@ public class Post {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ctg_id")
 	private Category category;
+	
+	@OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
+	private Set<Comment> comments = new HashSet<>();
 
 	public Long getPostId() {
 		return postId;
@@ -95,5 +101,13 @@ public class Post {
 
 	public void setCategory(Category category) {
 		this.category = category;
-	}	
+	}
+
+	public Set<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
 }

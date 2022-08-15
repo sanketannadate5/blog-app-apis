@@ -1,6 +1,8 @@
 package com.sanket.blogappapis.entity;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user_master")
+@Table(name = "user")
 public class User {
 
 	@Id
@@ -35,6 +37,9 @@ public class User {
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Post> posts;
+	
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private Set<Comment> comments = new HashSet<>();
 
 	public List<Post> getPosts() {
 		return posts;
@@ -82,5 +87,13 @@ public class User {
 
 	public void setAbout(String about) {
 		this.about = about;
+	}
+
+	public Set<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
 	}
 }

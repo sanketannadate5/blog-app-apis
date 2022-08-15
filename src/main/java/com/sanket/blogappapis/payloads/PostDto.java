@@ -1,6 +1,10 @@
 package com.sanket.blogappapis.payloads;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.sanket.blogappapis.entity.Comment;
 
 public class PostDto {
 	
@@ -19,6 +23,8 @@ public class PostDto {
  	private UserDto user;
 //	@NotEmpty
 	private CategoryDto category;
+	
+	private Set<Comment> comments = new HashSet<>();
 	
 	
 	public Long getPostId() {
@@ -62,5 +68,11 @@ public class PostDto {
 	}
 	public void setCategory(CategoryDto category) {
 		this.category = category;
+	}
+	public Set<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
 	}
 }
