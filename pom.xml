@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.sanket</groupId>
 	<artifactId>blog-app-apis</artifactId>
-	<version>0.0.8</version>
+	<version>0.0.9</version>
 	<name>blog-app-apis</name>
 	<description>This is an backend apis app for blogging</description>
 	<properties>

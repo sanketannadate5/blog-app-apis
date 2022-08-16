@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "post")
+@Table(name = "post_master")
 public class Post {
 	
 	@Id
@@ -44,7 +44,7 @@ public class Post {
 	@JoinColumn(name = "ctg_id")
 	private Category category;
 	
-	@OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	private Set<Comment> comments = new HashSet<>();
 
 	public Long getPostId() {

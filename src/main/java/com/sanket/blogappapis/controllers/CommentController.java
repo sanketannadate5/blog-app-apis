@@ -21,15 +21,15 @@ public class CommentController {
 	@Autowired
 	CommentService commentService;
 
-	@PostMapping("/post/{postId}")
-	public ResponseEntity<CommentDto> createComment(@RequestBody CommentDto commentDto, @PathVariable Long postId) {
-		CommentDto commentDtoupdated = commentService.createComment(commentDto, postId);
+	@PostMapping("/post/{postId}/user/{userId}")
+	public ResponseEntity<CommentDto> createComment(@RequestBody CommentDto commentDto, @PathVariable Long postId, @PathVariable Long userId) {
+		CommentDto commentDtoupdated = commentService.createComment(commentDto, postId,userId);
 		return new ResponseEntity<CommentDto>(commentDtoupdated, HttpStatus.CREATED);
 	}
 
-	@DeleteMapping("/{commentId}")
-	public ResponseEntity<ApiResponse> createComment(@PathVariable Long postId) {
-		commentService.deleteComment(postId);
+	@DeleteMapping("/delete/{commentId}")
+	public ResponseEntity<ApiResponse> createComment(@PathVariable Long commentId) {
+		commentService.deleteComment(commentId);
 		return new ResponseEntity<ApiResponse>(new ApiResponse("Comment deleted successfully !!!", true),
 				HttpStatus.OK);
 	}
