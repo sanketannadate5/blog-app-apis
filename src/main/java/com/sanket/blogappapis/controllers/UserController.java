@@ -21,14 +21,14 @@ import com.sanket.blogappapis.payloads.UserDto;
 import com.sanket.blogappapis.services.UserService;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/user")
 public class UserController {
 
 	@Autowired
 	private UserService userService;
 
 	// POST - create User
-	@PostMapping("/")
+	@PostMapping("/create")
 	public ResponseEntity<UserDto> createuser(@Valid @RequestBody UserDto userDto) {
 		return new ResponseEntity<UserDto>(userService.createUser(userDto), HttpStatus.CREATED);
 	}

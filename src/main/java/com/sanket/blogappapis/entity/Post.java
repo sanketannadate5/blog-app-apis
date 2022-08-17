@@ -44,7 +44,7 @@ public class Post {
 	@JoinColumn(name = "ctg_id")
 	private Category category;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "post")
 	private Set<Comment> comments = new HashSet<>();
 
 	public Long getPostId() {

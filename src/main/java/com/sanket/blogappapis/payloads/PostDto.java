@@ -4,8 +4,6 @@ import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.sanket.blogappapis.entity.Comment;
-
 public class PostDto {
 	
 	
@@ -24,7 +22,7 @@ public class PostDto {
 //	@NotEmpty
 	private CategoryDto category;
 	
-	private Set<Comment> comments = new HashSet<>();
+	private Set<CommentDto> commentDtos = new HashSet<>();
 	
 	
 	public Long getPostId() {
@@ -69,10 +67,10 @@ public class PostDto {
 	public void setCategory(CategoryDto category) {
 		this.category = category;
 	}
-	public Set<Comment> getComments() {
-		return comments;
+	public Set<CommentDto> getCommentDtos() {
+		return commentDtos;
 	}
-	public void setComments(Set<Comment> comments) {
-		this.comments = comments;
+	public void setCommentDtos(Set<CommentDto> commentDtos) {
+		this.commentDtos = commentDtos;
 	}
 }

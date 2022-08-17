@@ -44,14 +44,14 @@ public class PostController {
 	@Value("${project.image}")
 	private String path;
 
-	@PostMapping("/user/{userId}/category/{categoryId}")
+	@PostMapping("/create/user/{userId}/category/{categoryId}")
 	public ResponseEntity<PostDto> createPost(@Valid @RequestBody PostDto postDto, @PathVariable Long userId,
 			@PathVariable Long categoryId) {
 		return new ResponseEntity<PostDto>(postService.createPost(postDto, userId, categoryId), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{postId}")
-	public ResponseEntity<PostDto> updateCategory(@Valid @RequestBody PostDto postDto,
+	public ResponseEntity<PostDto> updatePost(@Valid @RequestBody PostDto postDto,
 			@PathVariable("postId") Long postId) {
 		return new ResponseEntity<PostDto>(postService.updatePost(postDto, postId), HttpStatus.CREATED);
 	}
