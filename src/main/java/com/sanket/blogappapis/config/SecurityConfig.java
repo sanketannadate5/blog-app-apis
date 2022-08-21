@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
-		.authorizeHttpRequests().antMatchers("/api/auth/login").permitAll()
+		.authorizeHttpRequests().antMatchers("/api/auth/**").permitAll()
 //		.antMatchers(HttpMethod.GET).permitAll()  TO PERMIT ALL GET METHODS WITHOUT AUTHENTICATION
 		.anyRequest().authenticated()
 		.and()

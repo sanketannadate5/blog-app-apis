@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,10 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sanket.blogappapis.entity.User;
 import com.sanket.blogappapis.exceptions.ApiException;
 import com.sanket.blogappapis.payloads.JwtAuthRequest;
 import com.sanket.blogappapis.payloads.JwtAuthResponse;
+import com.sanket.blogappapis.payloads.UserDto;
 import com.sanket.blogappapis.security.JwtTokenHelper;
+import com.sanket.blogappapis.services.UserService;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -31,6 +33,9 @@ public class AuthController {
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	
+	@Autowired
+	private UserService userService;
 
 	@PostMapping("/login")
 	public ResponseEntity<JwtAuthResponse> createToken(@RequestBody JwtAuthRequest jwtAuthRequest) throws Exception {
@@ -55,6 +60,13 @@ public class AuthController {
 			System.out.println("Invalid Username or password !!");
 			throw new ApiException("Invalid username or password !!");
 		}
+	}
+	
+	@PostMapping("/register")
+	public ResponseEntity<UserDto> registerUser(@RequestBody UserDto userDto){
+		UserDto registeredUser = userService.registerUser(userDto);
+		return new ResponseEntity<UserDto>(registeredUser,HttpStatus.CREATED);
+		
 	}
 
 }

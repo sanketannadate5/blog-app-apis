@@ -1,8 +1,13 @@
 package com.sanket.blogappapis.payloads;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
+import com.sanket.blogappapis.entity.Role;
 
 public class UserDto {
 
@@ -22,6 +27,8 @@ public class UserDto {
 	
 	@NotEmpty
 	private String about;
+	
+	private Set<Role> roles = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -61,5 +68,13 @@ public class UserDto {
 
 	public void setAbout(String about) {
 		this.about = about;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 }
