@@ -16,7 +16,7 @@ import com.sanket.blogappapis.payloads.ApiResponse;
 public class GlobalExceptionHandler {
 
 	@ExceptionHandler(ResourceNotFoundException.class)
-	public ResponseEntity<ApiResponse> ResourceNotFoundExceptionHandler(ResourceNotFoundException ex) {
+	public ResponseEntity<ApiResponse> resourceNotFoundExceptionHandler(ResourceNotFoundException ex) {
 		String message = ex.getMessage();
 		ApiResponse apiResponse = new ApiResponse(message, false);
 		return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.NOT_FOUND);
@@ -31,5 +31,12 @@ public class GlobalExceptionHandler {
 			map.put(fieldName, message);
 		});
 		return new ResponseEntity<Map<String, String>>(map, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(ApiException.class)
+	public ResponseEntity<ApiResponse> apiExceptioneHandler(ApiException ex) {
+		String message = ex.getMessage();
+		ApiResponse apiResponse = new ApiResponse(message, false);
+		return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.BAD_REQUEST);
 	}
 }
