@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.sanket</groupId>
 	<artifactId>blog-app-apis</artifactId>
-	<version>0.0.13</version>
+	<version>0.0.14</version>
 	<name>blog-app-apis</name>
 	<description>This is an backend apis app for blogging</description>
 	<properties>
@@ -73,6 +73,12 @@
 		    <groupId>io.jsonwebtoken</groupId>
 		    <artifactId>jjwt</artifactId>
 		    <version>0.9.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter -->
+		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-boot-starter</artifactId>
+		    <version>3.0.0</version>
 		</dependency>
 	</dependencies>
 

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sanket.blogappapis.entity.User;
 import com.sanket.blogappapis.exceptions.ApiException;
 import com.sanket.blogappapis.payloads.JwtAuthRequest;
 import com.sanket.blogappapis.payloads.JwtAuthResponse;
@@ -42,7 +41,7 @@ public class AuthController {
 
 		authenticate(jwtAuthRequest.getUsername(), jwtAuthRequest.getPassword());
 		
-		UserDetails userDetails = userDetailsService.loadUserByUsername(jwtAuthRequest.getUsername());
+		UserDetails  userDetails = userDetailsService.loadUserByUsername(jwtAuthRequest.getUsername());
 		
 		String token = jwtTokenHelper.generateToken(userDetails);
 		
