@@ -3,14 +3,12 @@ package com.sanket.blogappapis.controllers;
 import java.io.IOException;
 import java.io.InputStream;
 
-import javax.servlet.http.HttpServletResponse;
-
-import org.hibernate.engine.jdbc.StreamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.sanket.blogappapis.payloads.ImageResponse;
 import com.sanket.blogappapis.services.FileService;
+
+import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/file")
