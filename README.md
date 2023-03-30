@@ -34,7 +34,8 @@ http://localhost:8080/api/auth/login
 3.create user
 http://localhost:8080/api/user/create
 
-4. delete user
+4. delete user by id
+http://localhost:8080/api/user/userId
 
 5. get all users
 http://localhost:8080/api/user/
